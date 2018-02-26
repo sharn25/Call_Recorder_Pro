@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion project.sdk
+
+    defaultConfig {
+        minSdkVersion project.minSdk
+        targetSdkVersion project.sdk
+        versionCode project.libraryVersionCode
+        versionName project.libraryVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    testCompile 'junit:junit:4.12'
+}
+
+
+ext {
+    bintrayRepo = 'CallRecoderPro'
+    bintrayName = 'callrecoderpro'
+    orgName = 'SBDev'
+
+    publishedGroupId = 'com.SBDev'
+    libraryName = 'CallRecoderPro'
+    artifact = 'callrecoderpro' // module ile aynı isimde olması gerekiyor
+
+    libraryDescription = 'Call Recorder Pro'
+
+    siteUrl = 'https://github.com/sharn25/Call_Recoder_Pro'
+    gitUrl = 'https://github.com/sharn25/Call_Recoder_Pro.git'
+
+    libraryVersion = rootProject.ext.libraryVersion
+
+    developerId = 'Sharn25'
+    developerName = 'Sharn25'
+    developerEmail = 'sbdev.r@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: rootProject.file('gradle/install-v1.gradle')
+    apply from: rootProject.file('gradle/bintray-android-v1.gradle')
+}
+
+
+// ./gradlew clean install bintrayUpload

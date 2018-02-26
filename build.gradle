@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://clojars.org/repo/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://jitpack.io" }
+        maven { url "http://dl.bintray.com/android/android-tools" }
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://jcenter.bintray.com" }
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    sdk = 27
+    minSdk = 17
+    libraryVersion = "1.2.5"
+    libraryVersionCode = 17
+    supportVersion = "27.0.1"
+}

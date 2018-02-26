@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Call Recorder Pro</string>
+    <string name="service_name">FTPUploadService</string>
+</resources>
